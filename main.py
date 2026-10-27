@@ -10,6 +10,9 @@ video_extensions = [".mp4",".wkv",".avi"]
 music_extensions = [".mp3",".wav",".aac"]
 
 for file in files:
+    file_path = os.path.join(folder_path, file)
+    if not os.path.isfile(file_path):
+        continue
     name, extension = os.path.splitext(file)
     extension = extension.lower()
 
@@ -24,3 +27,9 @@ for file in files:
     else:
         category = "Others"
     print(f"{file} -> {category}")
+
+categories = ["Images","Documents","Videos","Music","Others"]
+for category in categories:
+    category_path = os.path.join(folder_path, category) 
+    os.makedirs(category_path,exist_ok=True)
+print("Category folders created successfully!")
